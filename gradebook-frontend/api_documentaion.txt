@@ -1,0 +1,212 @@
+**Gradebook API Documentation (Based on Source Code and Project Requirements)**
+
+---
+
+**Authentication and Authorization**
+
+* All endpoints (except /login and /health) require a valid `x-user-id` HTTP header corresponding to a logged-in user’s UUID.
+* Role-based access control (RBAC) is strictly enforced as per the roles: admin, director, teacher, parent, student.
+* Passwords are securely hashed (bcrypt) and verified at login.
+* Only admins can create, update, or delete users.
+
+---
+
+**Endpoints**
+
+**1. /login \[POST]**
+
+* Request: JSON with `email` and `password`
+* Response: `{ "user_id": UUID, "role": <role> }`
+* Public. Use this to obtain your user\_id for authenticated requests.
+
+**2. /health \[GET]**
+
+* Response: `"DB OK"` or `"DB ERROR"`
+* Public. Basic DB connectivity check.
+
+---
+
+**User Management (Admin Only)**
+
+* **/users \[POST]**
+
+  * Create user.
+  * Fields: `email`, `password`, `role`, `first_name`, `last_name`
+  * RBAC: Only admins can create users.
+
+* **/users \[GET]**
+
+  * List all users.
+  * RBAC: Only admins.
+
+* **/users/\:id \[PUT]**
+
+  * Update user fields (`email`, `password`, `role`, `first_name`, `last_name`).
+  * RBAC: Only admins.
+
+* **/users/\:id \[DELETE]**
+
+  * Delete user.
+  * RBAC: Only admins.
+
+---
+
+**Students**
+
+* **/students \[POST]**
+
+  * Create student record for a user\_id (must be a user with role student).
+  * Fields: `user_id`, `class`
+  * RBAC: Admin, director, and teacher only.
+
+* **/students \[GET]**
+
+  * List all students.
+  * RBAC: Admin, director, and teacher only.
+
+* **/students/\:id \[GET]**
+
+  * Get student by id.
+  * RBAC: Admin, director, and teacher only.
+
+* **/students/\:id \[PUT]**
+
+  * Update class field of student.
+  * RBAC: Admin, director, and teacher only.
+
+* **/students/\:id \[DELETE]**
+
+  * Delete student.
+  * RBAC: Admin, director, and teacher only.
+
+---
+
+**Grades**
+
+* **/grades \[POST]**
+
+  * Add grade.
+  * Fields: `student_id`, `subject`, `value`, `teacher_id`
+  * RBAC: Admin, director, teacher. (Teachers are not yet restricted to their own students.)
+
+* **/grades \[GET]**
+
+  * List grades:
+
+    * Admin, director, teacher: all grades.
+    * Parent: only grades for their children.
+    * Student: only their own grades.
+
+* **/grades/\:id \[PUT]**
+
+  * Update grade value or subject.
+  * RBAC: Admin, director, teacher.
+
+* **/grades/\:id \[DELETE]**
+
+  * Delete grade.
+  * RBAC: Admin, director, teacher.
+
+---
+
+**Absences**
+
+* **/absences \[POST]**
+
+  * Add absence.
+  * Fields: `student_id`, `date`, `reason`
+  * RBAC: Admin, director, teacher.
+
+* **/absences \[GET]**
+
+  * List absences:
+
+    * Admin, director, teacher: all absences.
+    * Parent: only absences for their children.
+    * Student: only their own absences.
+
+* **/absences/\:id \[PUT]**
+
+  * Update absence (`date`, `reason`).
+  * RBAC: Admin, director, teacher.
+
+* **/absences/\:id \[DELETE]**
+
+  * Delete absence.
+  * RBAC: Admin, director, teacher.
+
+---
+
+**Parent-Student Relations**
+
+* **/parent\_students \[POST]**
+
+  * Link a parent to a student.
+  * Fields: `parent_id`, `student_id`
+  * RBAC: Admin only.
+
+* **/parent\_students/\:parent\_id \[GET]**
+
+  * List students linked to parent.
+  * RBAC: Parent (self) and admin.
+
+* **/parent\_students/\:parent\_id/\:student\_id \[DELETE]**
+
+  * Unlink parent and student.
+  * RBAC: Admin only.
+
+---
+
+**Statistics**
+
+* **/stats/avg\_grade \[GET]**
+
+  * Returns average grade for each student.
+  * RBAC: Admin, director, teacher.
+
+* **/stats/absence\_count \[GET]**
+
+  * Returns absence count for each student.
+  * RBAC: Admin, director, teacher.
+
+---
+
+**Data Model Notes**
+
+* User fields: `id`, `email`, `hashed_password`, `role`, `first_name`, `last_name`, `created_at`
+* Student: references user by `user_id`, and a `class` string.
+* Parent-student relation: Many-to-many via join table.
+* Grades: `id`, `student_id`, `subject`, `value`, `teacher_id`, `created_at`.
+* Absences: `id`, `student_id`, `date`, `reason`, `created_at`.
+
+---
+
+**RBAC Summary (by role, per entity)**
+
+* **Admin:** Full access to all endpoints and data.
+* **Director:** Same as admin, except user management.
+* **Teacher:** Full read on students, grades, absences; can create/update/delete grades and absences.
+* **Parent:** Can view only their children’s grades and absences.
+* **Student:** Can view only their own grades and absences.
+
+---
+
+**Authentication Summary**
+
+* All non-public endpoints require the user’s UUID in the `x-user-id` header.
+* Backend checks the database for this user and role on each request.
+
+---
+
+**Other Notes**
+
+* No registration endpoint; user creation is admin-controlled.
+* All error responses are JSON with an error message.
+* CORS and logging middleware are enabled for frontend compatibility.
+
+---
+
+**Reference:**
+All behaviors confirmed against the latest source code and the project requirements PDF.
+Let me know if you want this documentation in another format (e.g., Markdown, OpenAPI), or want a client-side usage guide.
+

@@ -1,0 +1,29 @@
+# Rust/Cargo specific
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database files (if any local db files)
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup

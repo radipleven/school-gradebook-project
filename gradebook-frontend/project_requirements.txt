@@ -1,0 +1,34 @@
+System functional requirements
+The web-based electronic diary must include at least the following functionalities:
+1. Ability to assign user roles (administrator, principal, teacher,
+parent, student)
+2. User registration and login
+3. Means of personalizing the view for each role in the system
+4. Entering school data (name and address)
+5. Ability to enroll (deregister) students in a specific class at a given school
+6. Entering, editing, and deleting data for the principal (personal data) of a given
+school
+7. Entering, editing, and deleting data for teachers (personal data +
+subjects they are qualified to teach) at a given school
+8. Entering, editing, and deleting data for a student at a given school: personal
+data + the class in which they are enrolled.
+9. Entering, editing, and deleting data for a parent: personal data + which
+student(s) they are the parent of
+10. Setting a curriculum for the term, which includes a list of subjects and teachers
+11. Each teacher can enter, edit, and delete grades and record
+absences only for the students they teach.
+12. Each parent can only see the grades and absences of their children.
+13. Each principal sees all information about all subjects, teachers, students, and
+parents + statistics on the distribution of grades by subject, teacher,
+summarized for the entire school, etc.
+14. The administrator enters user data and their roles and can edit
+all information in the system. They can see statistical information about
+the distribution of grades and absences in all schools, in all subjects
+and by individual schools and subjects.
+The data used must be validated and unit
+tests must be performed (80% coverage).
+The electronic diary must be web-based, with the ability to be viewed in the most
+popular browsers (Chrome, Mozilla Firefox, Internet Explorer).
+Its design must be responsive (suitable for viewing on mobile devices)
+and must be compatible with the latest versions of the browsers mentioned above.
+
