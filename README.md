@@ -1,8 +1,8 @@
-# 🎓 School Gradebook System
+# School Gradebook System
 
 A comprehensive web-based electronic diary system for schools, built with modern technologies and designed to serve administrators, directors, teachers, parents, and students.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Technology Stack](#-technology-stack)
@@ -15,7 +15,7 @@ A comprehensive web-based electronic diary system for schools, built with modern
 - [Contributing](#-contributing)
 - [License](#-license)
 
-## ✨ Features
+## Features
 
 ### Core Functionality
 - **Multi-role Authentication System** - Secure login with role-based access control
@@ -28,40 +28,40 @@ A comprehensive web-based electronic diary system for schools, built with modern
 
 ### Role-Specific Features
 
-#### 👨‍💼 Administrator
+#### Administrator
 - Full system access and user management
 - Create, edit, and delete all user accounts
 - Manage school-wide data and configurations
 - Access comprehensive statistics across all schools
 - Oversee parent-student relationships
 
-#### 🏫 Director (Principal)
+#### Director (Principal)
 - View all school information and statistics
 - Manage students, teachers, and academic data
 - Access grade distribution and attendance reports
 - Oversee curriculum and class assignments
 - Monitor school performance metrics
 
-#### 👩‍🏫 Teacher
+#### Teacher
 - Manage grades for assigned students
 - Record and track student absences
 - View student information and class rosters
 - Access teaching-related statistics
 - Automatic grade authorship (teachers are auto-assigned to grades they create)
 
-#### 👨‍👩‍👧‍👦 Parent
+#### Parent
 - View children's grades and academic progress
 - Monitor attendance and absence records
 - Access personalized statistics for their children
 - Secure access limited to linked students only
 
-#### 🎓 Student
+#### Student
 - Personal dashboard with "My Info" section
 - View personal grades and academic history
 - Track personal attendance record
 - Access individual academic statistics
 
-## 🛠 Technology Stack
+## Technology Stack
 
 ### Backend
 - **Language**: Rust
@@ -109,7 +109,7 @@ A comprehensive web-based electronic diary system for schools, built with modern
 - **State Management**: Context API for authentication and global state
 - **UI Components**: Material-UI for consistent design system
 
-## 👥 User Roles & Permissions
+## User Roles & Permissions
 
 | Feature | Admin | Director | Teacher | Parent | Student |
 |---------|-------|----------|---------|--------|---------|
@@ -123,7 +123,7 @@ A comprehensive web-based electronic diary system for schools, built with modern
 | Statistics | ✅ | ✅ | ✅ | Own Children | Self Only |
 | Parent-Student Links | ✅ | ✅ | ❌ | ❌ | ❌ |
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - **Rust** (latest stable version)
@@ -204,7 +204,7 @@ npm run build
 npm run preview
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Authentication
 All endpoints (except `/login` and `/health`) require the `x-user-id` header with a valid user UUID.
@@ -301,7 +301,7 @@ All API responses follow a consistent JSON format with appropriate HTTP status c
 - Primary Key: (parent_id, student_id)
 ```
 
-## 🔧 Development
+## Development
 
 ### Backend Development
 ```bash
@@ -342,7 +342,7 @@ sqlx migrate run
 sqlx migrate revert
 ```
 
-## 🎨 UI/UX Features
+## UI/UX Features
 
 ### Responsive Design
 - Mobile-first approach with Material-UI breakpoints
@@ -361,7 +361,7 @@ sqlx migrate revert
 - Contextual navigation labels based on user role
 - Intuitive card-based layouts for personal information
 
-## 🔒 Security Features
+## Security Features
 
 - **Password Security**: bcrypt hashing with salt
 - **Role-Based Access Control**: Strict endpoint permissions
@@ -370,7 +370,7 @@ sqlx migrate revert
 - **Input Validation**: Comprehensive data validation on both frontend and backend
 - **Session Security**: Secure user identification system
 
-## 🚦 Browser Compatibility
+## Browser Compatibility
 
 - **Chrome** (latest)
 - **Firefox** (latest)
@@ -385,7 +385,7 @@ The application is fully responsive and optimized for:
 - **Smartphones**: iPhone, Android phones
 - **Touch interfaces**: Optimized touch targets and gestures
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -400,11 +400,11 @@ The application is fully responsive and optimized for:
 - Write comprehensive tests
 - Update documentation for new features
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with modern web technologies for educational institutions
 - Designed with user experience and security as top priorities
